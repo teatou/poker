@@ -1,0 +1,70 @@
+.login_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: #000000;
+    border-radius: 15px;
+    color: whitesmoke;
+}
+
+
+.login_container h1 {
+    margin: 0;
+    padding: 10% 12% 5%;
+    font-size: 36px;
+}
+
+.login_container h2, .login_container p {
+    margin: 0;
+    padding-bottom: 2%;
+}
+
+.email_container, .method_container {
+    padding: 2% 12% 3%;
+}
+
+.email_container input, .continue_btn input {
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    padding: 4% 5%;
+    background-color: #393939;
+    color: whitesmoke;
+    opacity: 1;
+    font-size: 16px;
+}
+
+input::placeholder{
+    color: #bababa;
+}
+
+.radio_container input {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #393939;
+}
+
+.radio_container input:checked {
+    transition: 0.2s all linear;
+    background-color: #d1007e;
+    border-width: 3px;
+    border-color: #454545;
+}
+
+.continue_btn {
+    padding: 3% 12%;
+}
+
+.continue_btn input {
+    padding: 4% 0;
+    background-color: #d1007e;
+}
+
+.foot {
+    padding: 3% 12% 8%;
+    text-align: center;
+}
