@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div class="login_container">
       <h1>Sign up</h1>
-      <form method="post" autocomplete="on">
+      <form autocomplete="on" action="/home">
         <div class="email_container">
           <h2>Email</h2>
           <input type="email" name="email" placeholder="example@email.com" required/>

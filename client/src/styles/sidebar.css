@@ -1,0 +1,33 @@
+nav {
+    height: 100vh;
+    width: fit-content;
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    background-color: #393939;
+    padding: 1% 0.8%;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.radiobuttons {
+    display: grid;
+    gap: 30%;
+    padding: 100% 0;
+}
+
+.radio-btn-container {
+    background-color: #d1007e;
+    padding: 30%;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.logout-btn-container {
+    display: flex;
+    align-items: flex-end;  
+}

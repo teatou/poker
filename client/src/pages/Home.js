@@ -1,10 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios';
+import '../styles/home.css';
+import PokerMain from './PokerMain';
+import BjMain from './BjMain';
+import { Link } from 'react-router-dom';
+import '../styles/sidebar.css';
 
 export default function Home() {
-  axios.get("http://localhost:8080/api/get").then((r) => console.log(r))
+  function createTable() {
+    axios.post("http://localhost:8080/createTable").then((r) => console.log("Table created"))
+  }
+
+  const currentGamePage = [<PokerMain />, <BjMain />]
+
   return (
-    <Link to="/login">Login</Link>
+    <main>
+      <nav>
+        <div className="logo">Logo</div>
+        <div className="radiobuttons">
+          <div className="radio-btn-container">
+            <input type="radio" id="Poker" name="currentGame" value="0" defaultChecked></input>
+          </div>
+          <div className="radio-btn-container">
+            <input type="radio" id="BlackJack" name="currentGame" value="1"></input>
+          </div>
+        </div>
+        <div className="logout-btn-container">
+          <Link to="/login">Logout</Link>
+        </div>
+      </nav>
+      { currentGamePage[0] }
+    </main>
   )
 }

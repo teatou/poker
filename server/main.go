@@ -13,18 +13,23 @@ func init() {
 }
 
 func main() {
+	// cors settings
 	c := cors.New(cors.Options{
 		AllowedOrigins:     []string{"http://localhost:3000"},
-		AllowedMethods:     []string{"GET"},
+		AllowedMethods:     []string{"GET", "POST"},
 		AllowedHeaders:     []string{},
 		ExposedHeaders:     []string{},
 		AllowCredentials:   true,  // cookies etc
 		OptionsPassthrough: false, // preflight requests
 	})
-	app := gin.Default()
-	app.Use(c)
 
-	app.GET("/api/get", controllers.Test)
+	// gin settings
+	router := gin.Default()
+	router.Use(c)
 
-	app.Run()
+	// gin routes
+	router.POST("/createTable", controllers.CreateTable)
+
+	// run
+	router.Run()
 }
