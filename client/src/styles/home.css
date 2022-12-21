@@ -9,11 +9,6 @@ body {
     color: white;
 }
 
-main {
-    display: flex;
-    background-color: 393939;
-}
-
 .dashboard {
     padding: 1% 15%;
     width: 100%;

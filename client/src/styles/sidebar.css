@@ -1,3 +1,7 @@
+.sidebar-window {
+    display: flex;
+}
+
 nav {
     height: 100vh;
     width: fit-content;
