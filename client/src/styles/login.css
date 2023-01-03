@@ -54,6 +54,10 @@ input::placeholder{
     border-color: #454545;
 }
 
+.radio_container label {
+    padding: 0 2%;
+}
+
 .continue_btn {
     padding: 3% 12%;
 }

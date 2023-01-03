@@ -1,0 +1,60 @@
+.landingContainer {
+    overflow: hidden;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header {
+    background-color: black;
+    padding: 0.6% 15%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+}
+
+header a {
+    padding: 0.8% 0.9% 0.5%;
+}
+
+.loginBtn {
+    background-color: #f1007e;
+    border-radius: 15px;
+    font-size: 13px;
+}
+
+.loginBtn:hover {
+    background-color: #f7108e;
+}
+
+main {
+    max-width: 1100px;
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+main * {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main h1 {
+    padding: 5% 25%;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.game {
+    align-items: center;
+    padding: 10%;
+    margin: 3% 0;
+}
+
+.gameDescription {
+    display: grid;
+}
