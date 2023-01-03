@@ -22,7 +22,7 @@ export default function Sidebar({ children }) {
                 <Link to="/login">L</Link>
             </div>
         </nav>
-        <div>
+        <div className="main-section">
             { children }
         </div>
     </div>
