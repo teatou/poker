@@ -20,7 +20,7 @@
     padding-bottom: 2%;
 }
 
-.email_container, .method_container {
+.email_container {
     padding: 2% 12% 3%;
 }
 
@@ -39,25 +39,6 @@ input::placeholder{
     color: #bababa;
 }
 
-.radio_container input {
-    appearance: none;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #393939;
-}
-
-.radio_container input:checked {
-    transition: 0.2s all linear;
-    background-color: #d1007e;
-    border-width: 3px;
-    border-color: #454545;
-}
-
-.radio_container label {
-    padding: 0 2%;
-}
-
 .continue_btn {
     padding: 3% 12%;
 }
@@ -65,9 +46,10 @@ input::placeholder{
 .continue_btn input {
     padding: 4% 0;
     background-color: #d1007e;
+    cursor: pointer;
 }
 
-.foot {
+.foot, .guest {
     padding: 3% 12% 8%;
     text-align: center;
 }

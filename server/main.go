@@ -29,6 +29,7 @@ func main() {
 
 	// gin routes
 	router.POST("/createTable", controllers.CreateTable)
+	router.POST("/api/sendCode", controllers.SendCode)
 
 	// run
 	router.Run()
