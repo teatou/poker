@@ -1,9 +1,17 @@
 import React from 'react';
+import axios from '../api/axios';
 
 export default function PokerMain() {
-  function createTable() {
-    console.log("New table created")
-  }
+  const createTable = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.get('/api/validate')
+      console.log(response.data)
+    } catch (err) {
+      console.log(err.response)
+    }
+};
   return (
     <div className="dashboard">
       <h1>Nickname</h1>

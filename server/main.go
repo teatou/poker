@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/teatou/poker/server/controllers"
 	"github.com/teatou/poker/server/initializers"
+	"github.com/teatou/poker/server/middleware"
 
 	cors "github.com/rs/cors/wrapper/gin"
 )
@@ -32,6 +33,7 @@ func main() {
 	// gin routes
 	router.POST("/api/login", controllers.Login)
 	router.POST("api/verifyCode", controllers.VerifyCode)
+	router.GET("api/validate", middleware.RequireAuth, controllers.Validate)
 
 	// run
 	router.Run()

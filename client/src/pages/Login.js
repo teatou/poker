@@ -5,10 +5,6 @@ import axios from '../api/axios';
 
 
 export default function Login() {
-  let params = {
-    userEmail: undefined,
-    authCode: undefined
-  };
   const form = useRef();
   const [loginStage, setStage] = useState(true);
   const [statusMessage, setStatusMessage] = useState("We've sent you code via email");
@@ -24,14 +20,13 @@ export default function Login() {
 
       let userEmail = document.getElementById("userEmail").value;
       
-      await axios.post('/api/login', { Email: userEmail })
-      .then(() => {
-          changeStage()
-          },
-          (error) => {
-          console.log(error.text);
-          }
-      );
+      try {
+        const response = await axios.post('/api/login', { Email: userEmail })
+        changeStage()
+        console.log(response.data)
+      } catch (err) {
+        console.log(err.response)
+      }
   };
 
   const verifyCode = async (e) => {
@@ -44,14 +39,12 @@ export default function Login() {
       const response = await axios.post('/api/verifyCode', { Email: userEmail, code: userCode })
       console.log(response.data)
       setStatusMessage("Access granted")
+      navigate("/poker")
     } catch (err) {
       if (err.response?.status === 400) {
         console.log("Access denied")
         setStatusMessage("Wrong code")
       }
-    }
-    if (userCode === toString(params.authCode)) {
-      navigate("/poker")
     }
   };
 

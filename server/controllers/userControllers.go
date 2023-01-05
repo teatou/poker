@@ -6,10 +6,12 @@ import (
 	"net/smtp"
 	"os"
 	"strconv"
+	"time"
 
 	"math/rand"
 
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/teatou/poker/server/initializers"
 	"github.com/teatou/poker/server/models"
 )
@@ -53,9 +55,6 @@ func VerifyCode(c *gin.Context) {
 		Email string
 		Code  string
 	}
-	var codeFind struct {
-		Code string
-	}
 
 	if c.Bind(&body) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -64,17 +63,47 @@ func VerifyCode(c *gin.Context) {
 		return
 	}
 
-	initializers.DB.Raw("SELECT code FROM users WHERE email = ?", body.Email).Scan(&codeFind)
+	codeFind, _ := strconv.Atoi(body.Code)
 
-	if codeFind.Code == body.Code {
-		c.JSON(http.StatusOK, gin.H{
-			"msg": "Access granted",
-		})
-	} else {
+	var user models.User
+	initializers.DB.First(&user, "email = ?", body.Email)
+
+	if user.Code != codeFind {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Codes do not match",
 		})
+		return
 	}
+
+	// jwt
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"sub": user.ID,
+		"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
+	})
+
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to create token",
+		})
+		return
+	}
+
+	// cookie
+	c.SetSameSite(http.SameSiteLaxMode)
+	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "cookie set",
+	})
+}
+
+func Validate(c *gin.Context) {
+	user, _ := c.Get("user")
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": user,
+	})
 }
 
 func sendEmail(subj string, body string, to []string) {
