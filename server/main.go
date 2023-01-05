@@ -10,6 +10,8 @@ import (
 
 func init() {
 	initializers.LoadEnvVars()
+	initializers.ConnectToDb()
+	initializers.SyncDb()
 }
 
 func main() {
@@ -29,7 +31,7 @@ func main() {
 
 	// gin routes
 	router.POST("/createTable", controllers.CreateTable)
-	router.POST("/api/sendCode", controllers.SendCode)
+	router.POST("/api/login", controllers.Login)
 
 	// run
 	router.Run()

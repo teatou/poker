@@ -22,12 +22,24 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/rs/cors/wrapper/gin v0.0.0-20221003140808-fcebdb403f4d
 	github.com/ugorji/go/codec v1.2.7 // indirect
-	golang.org/x/crypto v0.4.0 // indirect
-	golang.org/x/net v0.4.0 // indirect
-	golang.org/x/sys v0.3.0 // indirect
-	golang.org/x/text v0.5.0 // indirect
+	golang.org/x/crypto v0.5.0 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/sys v0.4.0 // indirect
+	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
 
-require github.com/gorilla/websocket v1.5.0
+require (
+	github.com/gorilla/websocket v1.5.0
+	gorm.io/driver/postgres v1.4.6
+	gorm.io/gorm v1.24.3
+)
+
+require (
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
+	github.com/jackc/pgx/v5 v5.2.0 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
+)

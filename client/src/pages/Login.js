@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
-import emailjs from '@emailjs/browser';
+import axios from 'axios';
 
 
 export default function Login() {
@@ -22,20 +22,11 @@ export default function Login() {
   const sendEmail = async (e) => {
       e.preventDefault();
 
-      params = {
-        userEmail: document.getElementById("userEmail").value,
-        authCode: Math.floor(Math.random() * 9999) + 1000,
-      }
-
-      emailjs.send(
-          "service_2vmqd4q",
-          "template_0ma691a",
-          params,
-          "vtwF01Po4B8KT12-p",
-      )
-      .then(
-          () => {
-          console.log("code sent");
+      let userEmail = document.getElementById("userEmail").value;
+      
+      axios.post('http://localhost:8080/api/login', { Email: userEmail })
+      .then(res => {
+          console.log(res);
           changeStage()
           },
           (error) => {
