@@ -30,8 +30,8 @@ func main() {
 	router.Use(c)
 
 	// gin routes
-	router.POST("/createTable", controllers.CreateTable)
 	router.POST("/api/login", controllers.Login)
+	router.POST("api/verifyCode", controllers.VerifyCode)
 
 	// run
 	router.Run()

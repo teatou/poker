@@ -7,7 +7,7 @@ export default function Landing() {
   return (
     <div className="landingContainer">
         <header>
-            <Link to="/">Casino</Link>
+            <Link to="/">Poker33</Link>
             <Link to="/login" className="loginBtn">Log in</Link>
         </header>
         <main>

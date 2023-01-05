@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
-import axios from 'axios';
+import axios from '../api/axios';
 
 
 export default function Login() {
@@ -11,22 +11,21 @@ export default function Login() {
   };
   const form = useRef();
   const [loginStage, setStage] = useState(true);
+  const [statusMessage, setStatusMessage] = useState("We've sent you code via email");
 
   const changeStage = () => {
     setStage(current => !current);
-    console.log("enter code")
   };
 
   const navigate = useNavigate();
 
-  const sendEmail = async (e) => {
+  const login = async (e) => {
       e.preventDefault();
 
       let userEmail = document.getElementById("userEmail").value;
       
-      axios.post('http://localhost:8080/api/login', { Email: userEmail })
-      .then(res => {
-          console.log(res);
+      await axios.post('/api/login', { Email: userEmail })
+      .then(() => {
           changeStage()
           },
           (error) => {
@@ -35,13 +34,24 @@ export default function Login() {
       );
   };
 
-  const sendCode = (e) => {
-    let userCode = document.getElementById("userCode").value
-    console.log(userCode, typeof(userCode), params.authCode)
+  const verifyCode = async (e) => {
+    e.preventDefault();
+
+    let userEmail = document.getElementById("userEmail").value;
+    let userCode = document.getElementById("userCode").value;
+
+    try {
+      const response = await axios.post('/api/verifyCode', { Email: userEmail, code: userCode })
+      console.log(response.data)
+      setStatusMessage("Access granted")
+    } catch (err) {
+      if (err.response?.status === 400) {
+        console.log("Access denied")
+        setStatusMessage("Wrong code")
+      }
+    }
     if (userCode === toString(params.authCode)) {
       navigate("/poker")
-    } else {
-      alert("Wrong code")
     }
   };
 
@@ -49,7 +59,7 @@ export default function Login() {
     <>
       <div className="login_container" style={{visibility: loginStage ? 'visible' : 'hidden'}}>
         <h1>Sign up</h1>
-        <form ref={form} onSubmit={sendEmail} autoComplete="on">
+        <form ref={form} onSubmit={login} autoComplete="on">
           <div className="email_container">
             <h2>Email</h2>
             <input
@@ -75,7 +85,7 @@ export default function Login() {
           </div>
         </form> 
       </div>
-      <div className="login_container" onSubmit={sendCode} style={{visibility: loginStage ? 'hidden' : 'visible'}}>
+      <div className="login_container" onSubmit={verifyCode} style={{visibility: loginStage ? 'hidden' : 'visible'}}>
         <h1>Sign up</h1>
         <form ref={form} autoComplete="on">
           <div className="email_container">
@@ -95,7 +105,7 @@ export default function Login() {
             />
           </div>
           <div className="guest">
-            <span>We've sent you code via email</span>
+            <span>{statusMessage}</span>
           </div>
           <div className="foot">
             <p>By continuing, you agree to our Terms and</p>
