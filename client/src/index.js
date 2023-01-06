@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RequireAuth from './api/RequireAuth';
 import Sidebar from './components/Sidebar';
 import BjMain from './pages/BjMain';
 import Landing from './pages/Landing';
@@ -15,7 +16,9 @@ root.render(
         <Routes>
             <Route index element={<Landing />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/poker" element={<Sidebar children={<PokerMain/>}/>} />
+            <Route path="/poker" element={
+                <RequireAuth children={<Sidebar children={<PokerMain/>}/>}/>
+            } />
             <Route path="/blackjack" element={<Sidebar children={<BjMain/>}/>} />
             <Route path="/settings" element={<Sidebar children={<Settings/>}/>} /> 
         </Routes>
