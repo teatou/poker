@@ -20,9 +20,12 @@ header a {
 }
 
 .loginBtn {
+    color: white;
     background-color: #f1007e;
     border-radius: 15px;
     font-size: 13px;
+    padding: 0.8% 0.9%;
+    cursor: pointer;
 }
 
 .loginBtn:hover {

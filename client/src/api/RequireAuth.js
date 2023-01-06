@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom';
 import axios from './axios';
 
 export default function RequireAuth({ children }) {
     var [elem, setElem] = useState(<div>default</div>)
 
-    const pickElem = () => {
+    const pickElem = useCallback(() => {
         axios.get('/api/validate')
         .then(
             function (response) {
@@ -19,11 +19,11 @@ export default function RequireAuth({ children }) {
                 setElem(<div><Link to="/login">Login</Link></div>)
             }
         )
-    }
+    }, [children])
 
     useEffect(() => {
         pickElem();
-      }, []);
+      }, [pickElem]);
 
     return (elem)
 }

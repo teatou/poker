@@ -1,14 +1,31 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import '../styles/landing.css';
+import axios from '../api/axios';
 
 export default function Landing() {
+  const navigate = useNavigate();
+  const checkAuth = (e) => {
+    e.preventDefault();
+    axios.get('/api/validate')
+      .then(
+          function () {
+            navigate('/poker')
+          }
+      )
+      .catch(
+          function () {
+              navigate('/login')
+          }
+      )
+  }
+
   return (
     <div className="landingContainer">
         <header>
             <Link to="/">Poker33</Link>
-            <Link to="/login" className="loginBtn">Log in</Link>
+            <button className="loginBtn" onClick={checkAuth}>Log in</button>
         </header>
         <main>
             <h1>

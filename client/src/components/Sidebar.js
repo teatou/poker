@@ -10,7 +10,7 @@ export default function Sidebar({ children }) {
   return (
     <div className="sidebar-window">
         <nav>
-            <div className="nav-logo"><GiPokerHand size={46} fill={'#d1007e'}/></div>
+            <Link to="/" className="nav-logo"><GiPokerHand size={46} fill={'#d1007e'}/></Link>
             <ul className="mainNav">
                 <li className="nav-btn"
                 id={window.location.pathname === "/poker" ? "active": ""}>
