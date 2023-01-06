@@ -48,6 +48,18 @@ export default function Login() {
     }
   };
 
+  const loginGuest = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.get('/api/loginguest')
+      console.log(response.data)
+      navigate("/poker")
+    } catch (err) {
+      console.log(err.response)
+    }
+};
+
   return (
     <>
       <div className="login_container" style={{visibility: loginStage ? 'visible' : 'hidden'}}>
@@ -70,7 +82,7 @@ export default function Login() {
             />
           </div>
           <div className="guest">
-            <span>Continue as a guest</span>
+            <span onClick={loginGuest}>Continue as a guest</span>
           </div>
           <div className="foot">
             <p>By continuing, you agree to our Terms and</p>

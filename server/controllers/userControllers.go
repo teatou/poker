@@ -110,6 +110,29 @@ func Logout(c *gin.Context) {
 	c.SetCookie("Authorization", "", 0, "", "", false, true)
 }
 
+func LoginAsGuest(c *gin.Context) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"sub": 1,
+		"exp": time.Now().Add(time.Hour * 6).Unix(),
+	})
+
+	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to create token",
+		})
+		return
+	}
+
+	// cookie
+	c.SetSameSite(http.SameSiteLaxMode)
+	c.SetCookie("Authorization", tokenString, 3600*6, "", "", false, true)
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "cookie set",
+	})
+}
+
 func sendEmail(subj string, body string, to []string) {
 	headers := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";"
 

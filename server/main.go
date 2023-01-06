@@ -22,7 +22,7 @@ func main() {
 		AllowedMethods:     []string{"GET", "POST"},
 		AllowedHeaders:     []string{},
 		ExposedHeaders:     []string{},
-		AllowCredentials:   true,  // cookies etc
+		AllowCredentials:   true,
 		OptionsPassthrough: false, // preflight requests
 	})
 
@@ -35,6 +35,7 @@ func main() {
 	router.POST("api/verifyCode", controllers.VerifyCode)
 	router.GET("api/validate", middleware.RequireAuth, controllers.Validate)
 	router.GET("api/logout", controllers.Logout)
+	router.GET("api/loginguest", controllers.LoginAsGuest)
 
 	// run
 	router.Run()

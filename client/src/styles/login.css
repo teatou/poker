@@ -53,3 +53,8 @@ input::placeholder{
     padding: 3% 12% 8%;
     text-align: center;
 }
+
+.guest span {
+    text-decoration: underline;
+    cursor: pointer;
+}
