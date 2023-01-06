@@ -34,6 +34,7 @@ func main() {
 	router.POST("/api/login", controllers.Login)
 	router.POST("api/verifyCode", controllers.VerifyCode)
 	router.GET("api/validate", middleware.RequireAuth, controllers.Validate)
+	router.GET("api/logout", controllers.Logout)
 
 	// run
 	router.Run()

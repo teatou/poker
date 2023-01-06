@@ -106,6 +106,10 @@ func Validate(c *gin.Context) {
 	})
 }
 
+func Logout(c *gin.Context) {
+	c.SetCookie("Authorization", "", 0, "", "", false, true)
+}
+
 func sendEmail(subj string, body string, to []string) {
 	headers := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";"
 

@@ -19,8 +19,12 @@ root.render(
             <Route path="/poker" element={
                 <RequireAuth children={<Sidebar children={<PokerMain/>}/>}/>
             } />
-            <Route path="/blackjack" element={<Sidebar children={<BjMain/>}/>} />
-            <Route path="/settings" element={<Sidebar children={<Settings/>}/>} /> 
+            <Route path="/blackjack" element={
+                <RequireAuth children={<Sidebar children={<BjMain/>}/>}/>
+            } />
+            <Route path="/settings" element={
+                <RequireAuth children={<Sidebar children={<Settings/>}/>}/>
+            } />
         </Routes>
     </BrowserRouter>
 );

@@ -1,12 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/sidebar.css';
 import '../styles/home.css';
 import { GiCardJackSpades, GiCardAceHearts, GiPokerHand } from 'react-icons/gi';
 import { AiOutlinePoweroff } from 'react-icons/ai';
 import { IoMdSettings } from 'react-icons/io';
+import axios from '../api/axios';
 
 export default function Sidebar({ children }) {
+    const navigate = useNavigate()
+
+    const logout = (e) => {
+        e.preventDefault();
+        axios.get("api/logout")
+        navigate("/")
+    }
+
   return (
     <div className="sidebar-window">
         <nav>
@@ -27,7 +36,7 @@ export default function Sidebar({ children }) {
                     <Link to="/settings"><IoMdSettings size={28} fill={'white'}/></Link>
                 </div>
                 <div className="nav-btn">
-                    <Link to="/login"><AiOutlinePoweroff size={28} fill={'white'} /></Link>
+                    <div onClick={logout}><AiOutlinePoweroff size={28} fill={'white'} /></div>
                 </div>
             </div>
         </nav>
