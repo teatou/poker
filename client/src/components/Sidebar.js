@@ -13,6 +13,7 @@ export default function Sidebar({ children }) {
     const logout = (e) => {
         e.preventDefault();
         axios.get("api/logout")
+        localStorage.clear()
         navigate("/")
     }
 

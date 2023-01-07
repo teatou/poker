@@ -33,6 +33,7 @@ export default function Settings() {
     try {
       const response = await axios.post('/api/changeTheme', { Theme: color })
       console.log(response.data)
+      localStorage.setItem('localColor', color)
       window.location.reload()
     } catch (err) {
         console.log(err.data)

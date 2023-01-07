@@ -8,20 +8,30 @@ export default function RequireAuth({ children }) {
     var [elem, setElem] = useState(<div>default</div>)
 
     const pickElem = useCallback(() => {
-        axios.get('/api/validate')
-        .then(
-            function (response) {
-                setColor(response.data.msg.Theme)
-                document.documentElement.style.setProperty('--main-color', curColor);
-                setElem(<div>{ children }</div>)
-            }
-        )
-        .catch(
-            function (error) {
-                console.log(error);
-                setElem(<div><Link to="/login">Login</Link></div>)
-            }
-        )
+        let localColor = localStorage.getItem('localColor')
+        let authorized = localStorage.getItem('auth')
+
+        if (authorized !== 'true') {
+            axios.get('/api/validate')
+            .then(
+                function (response) {
+                    setColor(response.data.msg.Theme)
+                    document.documentElement.style.setProperty('--main-color', curColor);
+                    localStorage.setItem('localColor', curColor)
+                    localStorage.setItem('auth', 'true')
+                    setElem(<div>{ children }</div>)
+                }
+            )
+            .catch(
+                function (error) {
+                    console.log(error);
+                    setElem(<div><Link to="/login">Login</Link></div>)
+                }
+            )
+        } else {
+            setElem(<div>{ children }</div>)
+            document.documentElement.style.setProperty('--main-color', localColor)
+        }
     }, [children, curColor])
 
     useEffect(() => {
