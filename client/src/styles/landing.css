@@ -7,7 +7,7 @@
 }
 
 header {
-    background-color: black;
+    background-color: var(--darkest);
     padding: 0.6% 15%;
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@ header a {
 
 .loginBtn {
     color: white;
-    background-color: #f1007e;
+    background-color: var(--main-color);
     border-radius: 15px;
     font-size: 13px;
     padding: 0.8% 0.9%;
@@ -29,7 +29,7 @@ header a {
 }
 
 .loginBtn:hover {
-    background-color: #f7108e;
+    background-color: var(--sub-color);
 }
 
 main {

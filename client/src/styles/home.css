@@ -1,3 +1,16 @@
+:root {
+    --darkest: black;
+    --dark-grey: #101010;
+    --light-grey: #393939;
+    --sub-color: crimson;
+    --pink-main: #d1007e;
+    --pink-sub: crimson;
+    --red-main: #E94B3CFF;
+    --red-sub: red;
+    --orange-main: #F2AA4CFF;
+    --orange-sub: orange;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +28,7 @@ a {
 }
 
 body {
-    background-color: #101010;
+    background-color: var(--dark-grey);
     color: white;
 }
 
@@ -36,7 +49,7 @@ body {
 .table-handler-btns button {
     height: 100%;
     width: 30%;
-    background-color: #d1007e;
+    background-color: var(--main-color);
     border: none;
     cursor: pointer;
     padding: 3% 0;

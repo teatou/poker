@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RequireAuth from './api/RequireAuth';
+import Theme from './api/Theme';
 import Sidebar from './components/Sidebar';
 import BjMain from './pages/BjMain';
 import Landing from './pages/Landing';
@@ -14,8 +15,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <Routes>
-            <Route index element={<Landing />} />
-            <Route path="/login" element={<Login />} />
+            <Route index element={
+                <Theme children={<Landing />}/>} />
+            <Route path="/login" element={
+                <Theme children={<Login />}/>} />
             <Route path="/poker" element={
                 <RequireAuth children={<Sidebar children={<PokerMain/>}/>}/>
             } />

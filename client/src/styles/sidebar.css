@@ -10,7 +10,7 @@ nav {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: var(--darkest);
 }
 
 .mainNav {
@@ -37,10 +37,10 @@ nav {
 }
 
 .nav-btn:hover {
-    background-color: #393939;
+    background-color: var(--light-grey);
 }
 
 #active {
     transition: 0.3s;
-    background-color: #d1007e;
+    background-color: var(--main-color);
 }

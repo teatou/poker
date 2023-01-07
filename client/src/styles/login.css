@@ -4,7 +4,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 500px;
-    background: #000000;
+    background: var(--darkest);
     border-radius: 15px;
     color: whitesmoke;
 }

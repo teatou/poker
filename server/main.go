@@ -36,6 +36,8 @@ func main() {
 	router.GET("api/validate", middleware.RequireAuth, controllers.Validate)
 	router.GET("api/logout", controllers.Logout)
 	router.GET("api/loginguest", controllers.LoginAsGuest)
+	router.POST("api/changeNickname", middleware.RequireAuth, controllers.ChangeNickname)
+	router.POST("api/changeTheme", middleware.RequireAuth, controllers.ChangeTheme)
 
 	// run
 	router.Run()

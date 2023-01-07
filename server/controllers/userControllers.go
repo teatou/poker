@@ -30,7 +30,7 @@ func Login(c *gin.Context) {
 	// creating auth code
 	code := 1000 + rand.Intn(9000)
 
-	user := models.User{Email: body.Email, Code: code}
+	user := models.User{Email: body.Email, Nickname: "Guest", Code: code, Theme: "pink"}
 	userFind := initializers.DB.First(&user, "email = ?", body.Email)
 
 	// if user not found
@@ -111,6 +111,18 @@ func Logout(c *gin.Context) {
 }
 
 func LoginAsGuest(c *gin.Context) {
+	user := models.User{ID: 1, Email: "guest", Nickname: "Guest", Code: 999, Theme: "#d1007e"}
+	userFind := initializers.DB.First(&user, "email = ?", "guest")
+	if userFind.RowsAffected == 0 {
+		result := initializers.DB.Create(&user)
+		if result.Error != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "Failed to create user",
+			})
+			return
+		}
+	}
+
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": 1,
 		"exp": time.Now().Add(time.Hour * 6).Unix(),
@@ -131,6 +143,52 @@ func LoginAsGuest(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"msg": "cookie set",
 	})
+}
+
+func ChangeNickname(c *gin.Context) {
+	var body struct {
+		Nickname string
+	}
+
+	if c.Bind(&body) != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to read body",
+		})
+		return
+	}
+
+	var userModel models.User
+	user, _ := c.Get("user")
+	fmt.Println(user)
+	c.JSON(http.StatusOK, gin.H{
+		"msg": user,
+	})
+
+	initializers.DB.First(&userModel, user)
+	initializers.DB.Model(&userModel).Update("nickname", body.Nickname)
+}
+
+func ChangeTheme(c *gin.Context) {
+	var body struct {
+		Theme string
+	}
+
+	if c.Bind(&body) != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to read body",
+		})
+		return
+	}
+
+	var userModel models.User
+	user, _ := c.Get("user")
+
+	c.JSON(http.StatusOK, gin.H{
+		"msg": user,
+	})
+
+	initializers.DB.First(&userModel, user)
+	initializers.DB.Model(&userModel).Update("theme", body.Theme)
 }
 
 func sendEmail(subj string, body string, to []string) {
