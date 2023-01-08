@@ -14,6 +14,7 @@ export default function Settings() {
     try {
       const response = await axios.post('/api/changeNickname', { Nickname: newNickname })
       setMsg("Nickname changed")
+      localStorage.setItem('nickname', newNickname)
       console.log(response.data)
     } catch (err) {
         setMsg("Error")

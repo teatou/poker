@@ -30,7 +30,7 @@ func Login(c *gin.Context) {
 	// creating auth code
 	code := 1000 + rand.Intn(9000)
 
-	user := models.User{Email: body.Email, Nickname: "Guest", Code: code, Theme: "pink"}
+	user := models.User{Email: body.Email, Nickname: "User", Code: code, Theme: "pink"}
 	userFind := initializers.DB.First(&user, "email = ?", body.Email)
 
 	// if user not found

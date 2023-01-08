@@ -19,6 +19,7 @@ export default function RequireAuth({ children }) {
                     document.documentElement.style.setProperty('--main-color', curColor);
                     localStorage.setItem('localColor', curColor)
                     localStorage.setItem('auth', 'true')
+                    localStorage.setItem('nickname', response.data.msg.Nickname)
                     setElem(<div>{ children }</div>)
                 }
             )

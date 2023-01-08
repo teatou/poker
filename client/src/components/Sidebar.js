@@ -20,7 +20,7 @@ export default function Sidebar({ children }) {
   return (
     <div className="sidebar-window">
         <nav>
-            <Link to="/" className="nav-logo"><GiPokerHand size={46} fill={'#d1007e'}/></Link>
+            <Link to="/" className="nav-logo"><GiPokerHand size={46} fill={localStorage.getItem('localColor')}/></Link>
             <ul className="mainNav">
                 <li className="nav-btn"
                 id={window.location.pathname === "/poker" ? "active": ""}>
