@@ -65,9 +65,18 @@ export default function Settings() {
           <span>Change theme</span>
           <form onSubmit={changeTheme}>
             <div className="theme-btns">
-              <input type="radio" name="theme" id="pink" value={'#d1007e'}/>
-              <input type="radio" name="theme" id="red" value={'#E94B3CFF'}/>
-              <input type="radio" name="theme" id="orange" value={'#F2AA4CFF'}/>
+              <label className="custom-radio" id='radio1'>
+                <input type="radio" name="theme" id="pink" value={'#d1007e'}/>
+                <span className="checkmark"></span>
+              </label>
+              <label className="custom-radio" id='radio2'>
+                <input type="radio" name="theme" id="red" value={'#E94B3CFF'}/>
+                <span className="checkmark"></span>
+              </label>
+              <label className="custom-radio" id='radio3'>
+                <input type="radio" name="theme" id="orange" value={'#F2AA4CFF'}/>
+                <span className="checkmark"></span>
+              </label>
             </div>
             <div>
               <input

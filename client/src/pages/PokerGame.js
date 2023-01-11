@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 
 
 export default function PokerGame() {
-    var conn, msg
+    var conn
 
     const first = useCallback(() => {
         conn = new WebSocket('ws://localhost:8080/ws/poker/joinTable');
