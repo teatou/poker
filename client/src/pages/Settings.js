@@ -42,8 +42,7 @@ export default function Settings() {
   };
 
   return (
-  <div>
-      <div className="settings-container">
+      <div className="dashboard">
         <div className="profileSettings">
           <h2>Profile</h2>
           <span>Change nickname</span>
@@ -80,6 +79,5 @@ export default function Settings() {
           <span>{msgNickname}</span>
         </div>
       </div>
-    </div>
   )
 }

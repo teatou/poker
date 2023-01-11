@@ -1,24 +1,19 @@
-.settings-container {
-    display: grid;
-    justify-content: center;
-}
-
 .profileSettings {
-    margin: 5% 5% 0;
-    padding: 7%;
+    margin: 4% auto 0;
+    padding: 5% 7%;
     background-color: black;
-    width: 50vw;
+    width: 80vw;
+    max-width: 900px;
     border-radius: 15px;
 }
 
-.profileSettings h2 {
+.profileSettings h1, h2 {
     margin: 3% 0 5%;
 }
 
 .profileSettings span {
     margin: 2% 0;
 }
-
 
 .profileSettings input {
     margin: 1% 0;

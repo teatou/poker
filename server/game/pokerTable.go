@@ -1,38 +1,40 @@
 package game
 
 type Table struct {
-	players    map[*Player]bool
-	broadcast  chan []byte
-	joinPlayer chan *Player
-	quitPlayer chan *Player
+	ID         string
+	Players    map[*Player]bool
+	Broadcast  chan []byte
+	JoinPlayer chan *Player
+	QuitPlayer chan *Player
 }
 
-func NewTable() *Table {
+func NewTable(Id string) *Table {
 	return &Table{
-		players:    make(map[*Player]bool),
-		broadcast:  make(chan []byte),
-		joinPlayer: make(chan *Player),
-		quitPlayer: make(chan *Player),
+		ID:         Id,
+		Players:    make(map[*Player]bool),
+		Broadcast:  make(chan []byte),
+		JoinPlayer: make(chan *Player),
+		QuitPlayer: make(chan *Player),
 	}
 }
 
 func (t *Table) Run() {
 	for {
 		select {
-		case player := <-t.joinPlayer:
-			t.players[player] = true
-		case player := <-t.quitPlayer:
-			if _, ok := t.players[player]; ok {
-				delete(t.players, player)
-				close(player.actions)
+		case player := <-t.JoinPlayer:
+			t.Players[player] = true
+		case player := <-t.QuitPlayer:
+			if _, ok := t.Players[player]; ok {
+				delete(t.Players, player)
+				close(player.Actions)
 			}
-		case message := <-t.broadcast:
-			for player := range t.players {
+		case message := <-t.Broadcast:
+			for player := range t.Players {
 				select {
-				case player.actions <- message:
+				case player.Actions <- message:
 				default:
-					close(player.actions)
-					delete(t.players, player)
+					close(player.Actions)
+					delete(t.Players, player)
 				}
 			}
 		}

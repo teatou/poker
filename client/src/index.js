@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import BjMain from './pages/BjMain';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
+import PokerGame from './pages/PokerGame';
 import PokerMain from './pages/PokerMain';
 import Settings from './pages/Settings';
 
@@ -27,6 +28,9 @@ root.render(
             } />
             <Route path="/settings" element={
                 <RequireAuth children={<Sidebar children={<Settings/>}/>}/>
+            } />
+            <Route path='/pokerGame' element={
+                <Theme children={<PokerGame />}/>
             } />
         </Routes>
     </BrowserRouter>

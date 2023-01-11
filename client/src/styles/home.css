@@ -37,32 +37,52 @@ body {
 }
 
 .dashboard {
-    padding: 5vh;
+    display: grid;
+    justify-content: center;
+}
+
+.tableManipulations {
+    display: flex;
+    justify-content: space-around;
+}
+
+.createTable, .joinTable {
+    border: var(--main-color) 1px solid;
+    width: 45%;
+    border-radius: 15px;
+    padding: 5%;
+}
+
+.tableManipulations div input, .tableLink {
+    background-color: var(--light-grey);
+    margin: 1% 0;
+    border-radius: 10px;
+    border: none;
     width: 100%;
+    padding: 2% 5%;
+    background-color: #393939;
+    color: whitesmoke;
+    opacity: 1;
+    font-size: 16px;
+    border-bottom: var(--main-color) 1px solid;
 }
 
 .table-handler-btns {
-    width: 30vw;
-    height: 100%;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .table-handler-btns button {
-    height: 100%;
-    width: 30%;
     background-color: var(--main-color);
-    border: none;
+    width: 90px;
+    height: 50px;
+    border-radius: 20px;
     cursor: pointer;
-    padding: 3% 0;
-}
-
-#createTable-btn {
-    border-radius: 30px 0 0 30px;
-    border-right: 1px solid black;
-}
-
-#joinTable-btn {
-    border-radius: 0 30px 30px 0;
-    border-left: 1px solid black;
+    color: whitesmoke;
+    font-size: 16px;
 }
 
 .gamesHistory {
